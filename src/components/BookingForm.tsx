@@ -5,15 +5,36 @@ import { X, Send, CheckCircle, ArrowRight } from 'lucide-react';
 export default function BookingForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    mobile: '',
+    service: 'Hair Styling & Cut'
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwEbN5a8FfvH6FP9CMuflxJ7hblhNz0lwXp45Q9XoC1eCzlmV6AeaqnKUtCvGinIlw/exec', {
+        method: 'POST',
+        mode: 'no-cors', // Apps Script requires no-cors for simple redirects or returns
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      // Since we use no-cors, we won't get a readable response, but the data will be sent.
+      // We assume success if no error was thrown.
       setIsLoading(false);
       setIsSubmitted(true);
-    }, 1500);
+      setFormData({ name: '', mobile: '', service: 'Hair Styling & Cut' });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setIsLoading(false);
+      alert('There was an error submitting your request. Please try again or call us.');
+    }
   };
 
   return (
@@ -36,25 +57,37 @@ export default function BookingForm() {
             </motion.h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
-              {[
-                { label: "Full Name", type: "text", placeholder: "Enter your name" },
-                { label: "Phone Number", type: "tel", placeholder: "+91 00000 00000" },
-              ].map((field, idx) => (
-                <motion.div
-                  key={field.label}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 * idx + 0.2 }}
-                >
-                  <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">{field.label}</label>
-                  <input 
-                    required
-                    type={field.type} 
-                    placeholder={field.placeholder}
-                    className="input-luxury"
-                  />
-                </motion.div>
-              ))}
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">Full Name</label>
+                <input 
+                  required
+                  type="text" 
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="input-luxury"
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">Mobile Number</label>
+                <input 
+                  required
+                  type="tel" 
+                  placeholder="+91 00000 00000"
+                  value={formData.mobile}
+                  onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                  className="input-luxury"
+                />
+              </motion.div>
               
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
@@ -63,7 +96,11 @@ export default function BookingForm() {
               >
                 <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">Select Service</label>
                 <div className="relative">
-                  <select className="input-luxury appearance-none">
+                  <select 
+                    className="input-luxury appearance-none"
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  >
                     <option>Hair Styling & Cut</option>
                     <option>Skin Treatment</option>
                     <option>Bridal Makeup</option>
@@ -109,9 +146,9 @@ export default function BookingForm() {
             <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle size={40} />
             </div>
-            <h3 className="text-3xl font-serif mb-4">Appointment Requested!</h3>
+            <h3 className="text-3xl font-serif mb-4">Thanks for submitting!</h3>
             <p className="text-brand-ink/60 mb-8 leading-relaxed">
-              Thanks for choosing RK Salon. Our team will contact you shortly to confirm your slot.
+              Our team will contact you soon.
             </p>
             <button 
               onClick={() => setIsSubmitted(false)}
