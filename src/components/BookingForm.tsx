@@ -16,7 +16,7 @@ export default function BookingForm() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbwEbN5a8FfvH6FP9CMuflxJ7hblhNz0lwXp45Q9XoC1eCzlmV6AeaqnKUtCvGinIlw/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzP9YJTZozRXfkWJLkNAnoBChXT2V-WrkAlUQ0azefrbHzgdujzFldox7ZMjLmKmZBc/exec', {
         method: 'POST',
         mode: 'no-cors', // Apps Script requires no-cors for simple redirects or returns
         headers: {
