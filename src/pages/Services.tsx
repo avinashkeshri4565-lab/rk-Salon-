@@ -49,13 +49,18 @@ export default function Services() {
     <div className="pt-20">
       {/* Header */}
       <section className="section-padding bg-brand-ink text-white pt-32 pb-40">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto text-center"
+        >
           <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Our Menu</span>
           <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Exquisite Services</h1>
           <p className="text-xl text-white/50 leading-relaxed font-light">
             Indulge in a curated selection of beauty treatments designed for the modern woman.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Services List */}
@@ -63,20 +68,29 @@ export default function Services() {
         <div className="space-y-32">
           {categories.map((cat, idx) => (
             <div key={cat.id}>
-              <div className="flex items-center gap-6 mb-16">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-6 mb-16"
+              >
                 <div className="w-16 h-16 rounded-3xl bg-brand-pink/20 text-brand-ink flex items-center justify-center font-bold">
                   <cat.icon size={32} />
                 </div>
                 <h2 className="text-4xl font-serif text-brand-ink italic tracking-tight">{cat.title}</h2>
                 <div className="h-[1px] bg-brand-ink/10 flex-grow"></div>
-              </div>
+              </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {cat.services.map((item, i) => (
                   <motion.div 
                     key={i}
-                    whileHover={{ y: -10 }}
-                    className="bg-white rounded-[32px] overflow-hidden border border-brand-pink/10 shadow-sm flex flex-col group"
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.6 }}
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    className="bg-white rounded-[32px] overflow-hidden border border-brand-pink/10 shadow-sm flex flex-col group hover:shadow-xl transition-all"
                   >
                     <div className="h-64 overflow-hidden relative">
                       <img 

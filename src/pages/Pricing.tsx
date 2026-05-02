@@ -39,12 +39,18 @@ export default function Pricing() {
   return (
     <div className="pt-20">
       {/* Header */}
-      <section className="section-padding pt-32 text-center bg-white border-b border-brand-pink/10">
-        <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Transparent Value</span>
-        <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Price Menu</h1>
-        <p className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light">
-          Premium services at fair prices. We believe in transparency and the highest standards of luxury.
-        </p>
+      <section className="section-padding pt-32 text-center bg-white border-b border-brand-pink/10 overflow-hidden">
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8 }}
+        >
+          <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Transparent Value</span>
+          <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Price Menu</h1>
+          <p className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light">
+            Premium services at fair prices. We believe in transparency and the highest standards of luxury.
+          </p>
+        </motion.div>
       </section>
 
       {/* Pricing Tables */}
@@ -53,14 +59,15 @@ export default function Pricing() {
           {pricingCategories.map((cat, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-[40px] p-10 border border-brand-pink/10 shadow-sm relative flex flex-col"
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="bg-white rounded-[40px] p-10 border border-brand-pink/10 shadow-sm relative flex flex-col hover:shadow-xl transition-all"
             >
               <div className="flex items-center gap-4 mb-10">
-                <div className="w-12 h-12 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center group-hover:bg-brand-gold group-hover:text-black transition-colors">
                    <cat.icon size={24} />
                 </div>
                 <h3 className="text-2xl font-serif">{cat.name}</h3>
@@ -68,7 +75,14 @@ export default function Pricing() {
 
               <div className="space-y-8 flex-grow">
                 {cat.services.map((service, sIdx) => (
-                  <div key={sIdx} className={`pb-6 border-b border-brand-pink/5 last:border-0 ${service.highlight ? 'relative' : ''}`}>
+                  <motion.div 
+                    key={sIdx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + (sIdx * 0.1) }}
+                    className={`pb-6 border-b border-brand-pink/5 last:border-0 ${service.highlight ? 'relative' : ''}`}
+                  >
                     <div className="flex justify-between items-start mb-2">
                        <h4 className="font-medium text-brand-ink">{service.name}</h4>
                        <span className="text-brand-gold font-bold">{service.price}</span>
@@ -76,11 +90,11 @@ export default function Pricing() {
                     <span className={`text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded ${service.highlight ? 'bg-brand-gold text-white' : 'bg-brand-pink/10 text-brand-ink/50'}`}>
                        {service.tag}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
-              <Link to="/contact" className="btn-primary w-full text-center mt-12 flex items-center justify-center gap-3">
+              <Link to="/contact" className="btn-primary w-full text-center mt-12 flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-transform">
                  <span>Book Now</span>
                  <ArrowRight size={18} />
               </Link>

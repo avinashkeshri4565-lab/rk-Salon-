@@ -29,40 +29,54 @@ export default function BookingForm() {
             <h3 className="text-3xl font-serif text-brand-ink mb-6 text-center italic">Quick Booking</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">Full Name</label>
-                <input 
-                  required
-                  type="text" 
-                  placeholder="Enter your name"
-                  className="input-luxury"
-                />
-              </div>
+              {[
+                { label: "Full Name", type: "text", placeholder: "Enter your name" },
+                { label: "Phone Number", type: "tel", placeholder: "+91 00000 00000" },
+              ].map((field, idx) => (
+                <motion.div
+                  key={field.label}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * idx + 0.2 }}
+                >
+                  <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">{field.label}</label>
+                  <input 
+                    required
+                    type={field.type} 
+                    placeholder={field.placeholder}
+                    className="input-luxury"
+                  />
+                </motion.div>
+              ))}
               
-              <div>
-                <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">Phone Number</label>
-                <input 
-                  required
-                  type="tel" 
-                  placeholder="+91 00000 00000"
-                  className="input-luxury"
-                />
-              </div>
-              
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+              >
                 <label className="block text-[10px] uppercase tracking-widest text-brand-grey mb-1 font-bold">Select Service</label>
-                <select className="input-luxury appearance-none">
-                  <option>Hair Styling & Cut</option>
-                  <option>Skin Treatment</option>
-                  <option>Bridal Makeup</option>
-                  <option>Manicure & Pedicure</option>
-                </select>
-              </div>
+                <div className="relative">
+                  <select className="input-luxury appearance-none">
+                    <option>Hair Styling & Cut</option>
+                    <option>Skin Treatment</option>
+                    <option>Bridal Makeup</option>
+                    <option>Manicure & Pedicure</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-brand-gold">
+                    <ArrowRight size={14} className="rotate-90" />
+                  </div>
+                </div>
+              </motion.div>
 
-              <button 
+              <motion.button 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(212, 175, 55, 0.4)" }}
+                whileTap={{ scale: 0.98 }}
                 type="submit" 
                 disabled={isLoading}
-                className="w-full btn-accent !py-4 shadow-lg shadow-brand-gold/20 flex items-center justify-center gap-3 active:scale-[0.98]"
+                className="w-full btn-accent !py-4 shadow-lg shadow-brand-gold/20 flex items-center justify-center gap-3"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -72,7 +86,7 @@ export default function BookingForm() {
                     <Send size={18} />
                   </>
                 )}
-              </button>
+              </motion.button>
             </form>
             <p className="text-center text-[10px] text-brand-grey mt-6 uppercase tracking-tighter">
               Or call us directly: <span className="text-brand-pink font-bold">+91 98765 43210</span>
