@@ -1,10 +1,101 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, MapPin, Phone, Mail, MessageCircle, ArrowUpRight } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Instagram, MapPin, Phone, Mail, MessageCircle, ArrowUpRight, Sparkles, CheckCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function Footer() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    mobile: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbzP9YJTZozRXfkWJLkNAnoBChXT2V-WrkAlUQ0azefrbHzgdujzFldox7ZMjLmKmZBc/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          service: 'General Inquiry',
+          source: 'Footer Form'
+        }),
+      });
+
+      setIsLoading(false);
+      setIsSubmitted(true);
+      setFormData({ name: '', mobile: '' });
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Submission error:', error);
+      setIsLoading(false);
+      alert('There was an error. Please try again.');
+    }
+  };
+
   return (
     <footer className="bg-brand-ink text-white overflow-hidden">
+      {/* Footer CTA / Form Section */}
+      <div className="max-w-7xl mx-auto px-6 pt-24 pb-12 border-b border-white/5">
+         <div className="bg-white/5 rounded-[40px] p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-12 border border-white/10 relative overflow-hidden group">
+            <div className="relative z-10 lg:max-w-md">
+               <h3 className="text-3xl font-serif mb-4 italic">Quick Appointment</h3>
+               <p className="text-white/40 text-sm leading-relaxed">Fill your details and our experts will call you back within 30 minutes to confirm your slot.</p>
+            </div>
+            
+            <div className="w-full lg:max-w-md relative z-10">
+              <AnimatePresence mode="wait">
+                {!isSubmitted ? (
+                  <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+                    <input 
+                      required
+                      type="text" 
+                      placeholder="Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="flex-1 bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:border-brand-pink outline-none transition-colors"
+                    />
+                    <input 
+                      required
+                      type="tel" 
+                      placeholder="Mobile"
+                      value={formData.mobile}
+                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                      className="flex-1 bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:border-brand-pink outline-none transition-colors"
+                    />
+                    <button 
+                      type="submit" 
+                      disabled={isLoading}
+                      className="bg-brand-pink text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-brand-pink/80 md:w-auto w-full transition-all flex items-center justify-center gap-2"
+                    >
+                      {isLoading ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> : "Submit"}
+                    </button>
+                  </form>
+                ) : (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex items-center gap-4 text-green-400 bg-green-400/10 p-5 rounded-2xl border border-green-400/20"
+                  >
+                    <CheckCircle size={24} />
+                    <span className="text-sm font-medium">Thanks for submitting! Our team will contact you soon.</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Decor */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-pink/5 blur-3xl -translate-y-1/2 translate-x-1/2 rounded-full"></div>
+         </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 py-24 group">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 border-b border-white/5 pb-20">
           {/* Brand */}

@@ -24,13 +24,37 @@ export default function OfferPopup() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    mobile: '',
+    service: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setTimeout(() => {
+    
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbzP9YJTZozRXfkWJLkNAnoBChXT2V-WrkAlUQ0azefrbHzgdujzFldox7ZMjLmKmZBc/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: 'Popup Form'
+        }),
+      });
+
       setIsLoading(false);
       setIsSubmitted(true);
-    }, 1500);
+      setFormData({ name: '', mobile: '', service: '' });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setIsLoading(false);
+      alert('There was an error submitting your request. Please try again.');
+    }
   };
 
   return (
@@ -77,6 +101,8 @@ export default function OfferPopup() {
                         required
                         type="text" 
                         placeholder="Your Name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="input-luxury !pl-12"
                       />
                     </div>
@@ -93,6 +119,8 @@ export default function OfferPopup() {
                         required
                         type="tel" 
                         placeholder="Mobile Number"
+                        value={formData.mobile}
+                        onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                         className="input-luxury !pl-12"
                       />
                     </div>
@@ -103,7 +131,12 @@ export default function OfferPopup() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 }}
                   >
-                    <select required className="input-luxury appearance-none">
+                    <select 
+                      required 
+                      className="input-luxury appearance-none"
+                      value={formData.service}
+                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    >
                       <option value="">Select Service</option>
                       <option>Haircut</option>
                       <option>Hair Styling</option>

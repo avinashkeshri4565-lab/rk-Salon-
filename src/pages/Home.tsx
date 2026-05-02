@@ -3,10 +3,20 @@ import { Link } from 'react-router-dom';
 import { Star, Check, ArrowRight, Instagram, MessageCircle, Scissors, Sparkles, User, Zap } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import TestimonialSlider from '../components/TestimonialSlider';
+import BookingModal from '../components/BookingModal';
+import { useState } from 'react';
 
 export default function Home() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
   return (
     <div className="pt-20">
+      <BookingModal 
+        isOpen={isBookingOpen} 
+        onClose={() => setIsBookingOpen(false)} 
+        source="Hero Form" 
+      />
+      
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden border-b border-brand-border bg-brand-offwhite">
         
@@ -55,7 +65,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <motion.span 
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-brand-gold font-serif italic text-xl mb-4 block"
@@ -93,22 +103,36 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
               >
-                <Link to="/services" className="bg-brand-ink text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-black transition-colors uppercase tracking-widest text-xs">
-                  View Services
-                </Link>
+                <button 
+                  onClick={() => setIsBookingOpen(true)}
+                  className="btn-accent px-10 !py-4 shadow-xl flex items-center gap-2 group"
+                >
+                  Book Now <Sparkles size={16} className="group-hover:rotate-12 transition-transform" />
+                </button>
               </motion.div>
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
-                whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(37, 211, 102, 0.4)" }}
+                whileHover={{ scale: 1.05 }}
               >
                 <a href="https://wa.me/919876543210" className="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-[#128C7E] transition-colors shadow-lg shadow-green-500/20 uppercase tracking-widest text-xs">
                    <MessageCircle size={18} fill="white" />
-                   WhatsApp Us
+                   WhatsApp
                 </a>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <Link to="/services" className="bg-brand-ink text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-black transition-colors uppercase tracking-widest text-[10px]">
+                  Services
+                </Link>
               </motion.div>
             </div>
             
@@ -526,7 +550,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <BookingForm />
+            <BookingForm source="Appointment Section" />
           </motion.div>
         </motion.div>
       </section>

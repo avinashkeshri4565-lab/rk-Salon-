@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Send, CheckCircle, ArrowRight } from 'lucide-react';
 
-export default function BookingForm() {
+export default function BookingForm({ source = "Appointment Section" }: { source?: string }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,17 +16,18 @@ export default function BookingForm() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzP9YJTZozRXfkWJLkNAnoBChXT2V-WrkAlUQ0azefrbHzgdujzFldox7ZMjLmKmZBc/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbzP9YJTZozRXfkWJLkNAnoBChXT2V-WrkAlUQ0azefrbHzgdujzFldox7ZMjLmKmZBc/exec', {
         method: 'POST',
-        mode: 'no-cors', // Apps Script requires no-cors for simple redirects or returns
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          source: source
+        }),
       });
 
-      // Since we use no-cors, we won't get a readable response, but the data will be sent.
-      // We assume success if no error was thrown.
       setIsLoading(false);
       setIsSubmitted(true);
       setFormData({ name: '', mobile: '', service: 'Hair Styling & Cut' });
