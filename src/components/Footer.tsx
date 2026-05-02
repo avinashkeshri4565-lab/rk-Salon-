@@ -18,18 +18,30 @@ export default function Footer() {
               <div className="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center text-black font-serif italic text-xl">RK</div>
               RK <span className="text-brand-gold italic font-normal">Salon</span>
             </Link>
-            <p className="text-white/40 text-sm leading-relaxed font-light">
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-white/40 text-sm leading-relaxed font-light"
+            >
               Elevating beauty standards through expert care, premium products, and a sanctuary of relaxation. Your transformation journey starts here.
-            </p>
+            </motion.p>
             <div className="flex gap-4">
-              {[Instagram, MessageCircle, Mail].map((Icon, idx) => (
+              {[
+                { Icon: Instagram, color: '#E1306C', href: '#' },
+                { Icon: MessageCircle, color: '#25D366', href: 'https://wa.me/919876543210' },
+                { Icon: Mail, color: '#C5A059', href: 'mailto:contact@rksalon.com' }
+              ].map((social, idx) => (
                 <motion.a 
                   key={idx}
-                  whileHover={{ scale: 1.1, backgroundColor: '#d4af37', color: '#000' }}
-                  href="#" 
+                  whileHover={{ scale: 1.1, backgroundColor: social.color, color: '#fff' }}
+                  href={social.href}
+                  target={social.Icon === MessageCircle ? "_blank" : undefined}
+                  rel={social.Icon === MessageCircle ? "noreferrer" : undefined}
                   className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 transition-all"
                 >
-                  <Icon size={18} />
+                  <social.Icon size={18} />
                 </motion.a>
               ))}
             </div>
@@ -42,7 +54,15 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <h4 className="font-serif text-lg mb-8 text-brand-gold italic">Quick Links</h4>
+            <motion.h4 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="font-serif text-lg mb-8 text-brand-gold italic"
+            >
+              Quick Links
+            </motion.h4>
             <ul className="space-y-4">
               {[
                 { name: "Our Story", path: "/about" },
@@ -68,7 +88,15 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h4 className="font-serif text-lg mb-8 text-brand-gold italic">Our expertise</h4>
+            <motion.h4 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="font-serif text-lg mb-8 text-brand-gold italic"
+            >
+              Our expertise
+            </motion.h4>
             <ul className="space-y-4">
               {["Hair Styling", "Skincare & Facials", "Bridal Makeup", "Manicure & Pedicure", "Waxing & Threading"].map((service, idx) => (
                 <li key={idx}>
@@ -89,7 +117,15 @@ export default function Footer() {
             transition={{ delay: 0.3 }}
             className="space-y-6"
           >
-            <h4 className="font-serif text-lg mb-8 text-brand-gold italic">Visit Sanctuary</h4>
+            <motion.h4 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="font-serif text-lg mb-8 text-brand-gold italic"
+            >
+              Visit Sanctuary
+            </motion.h4>
             <div className="flex gap-4 group/box">
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover/box:border-brand-pink transition-colors">
                 <MapPin size={18} className="text-brand-pink" />

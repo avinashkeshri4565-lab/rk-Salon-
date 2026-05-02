@@ -7,11 +7,36 @@ export default function Contact() {
     <div className="pt-20">
       {/* Header */}
       <section className="section-padding pt-32 text-center">
-        <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Get In Touch</span>
-        <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Visit the Sanctuary</h1>
-        <p className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light">
-          Step into our luxury space and let us pamper you. We are located in the heart of the glamour district.
-        </p>
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block"
+          >
+            Get In Touch
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-6xl md:text-8xl font-serif mb-10 italic"
+          >
+            Visit the Sanctuary
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light"
+          >
+            Step into our luxury space and let us pamper you. We are located in the heart of the glamour district.
+          </motion.p>
+        </motion.div>
       </section>
 
       {/* Contact Grid */}
@@ -87,7 +112,15 @@ export default function Contact() {
              <div className="absolute inset-0 bg-brand-ink/80 flex items-center justify-center text-center p-12">
                 <div className="space-y-6">
                    <MapPin size={48} className="mx-auto text-brand-gold animate-bounce" />
-                   <h3 className="text-3xl font-serif text-white italic">Find Us In Mumbai</h3>
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 }}
+                      className="text-3xl font-serif text-white italic"
+                    >
+                      Find Us In Mumbai
+                    </motion.h3>
                    <p className="text-white/40 text-sm max-w-xs mx-auto">Click below to open our location in Google Maps for real-time navigation.</p>
                    <a 
                     href="https://maps.google.com" 

@@ -54,22 +54,62 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-brand-gold font-serif italic text-xl mb-4 block">Your Beauty, Our Passion</span>
-            <h1 className="text-5xl md:text-7xl font-serif text-brand-ink leading-[1.1] mb-8 tracking-tight drop-shadow-sm">
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-brand-gold font-serif italic text-xl mb-4 block"
+            >
+              Your Beauty, Our Passion
+            </motion.span>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+              className="text-5xl md:text-7xl font-serif text-brand-ink leading-[1.1] mb-8 tracking-tight drop-shadow-sm"
+            >
               Enhance Your <br/>
-              <span className="text-brand-pink italic drop-shadow-sm">Beauty</span> with RK Salon
-            </h1>
-            <p className="text-lg text-brand-grey mb-10 leading-relaxed max-w-md font-light">
+              <motion.span 
+                animate={{ 
+                  textShadow: ["0 0 0px rgba(236, 72, 153, 0)", "0 0 20px rgba(236, 72, 153, 0.4)", "0 0 0px rgba(236, 72, 153, 0)"]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="text-brand-pink italic drop-shadow-sm"
+              >
+                Beauty
+              </motion.span> with RK Salon
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+              className="text-lg text-brand-grey mb-10 leading-relaxed max-w-md font-light"
+            >
               Experience luxury treatments from professional stylists in a serene, hygienic environment.
-            </p>
+            </motion.p>
             
             <div className="flex flex-wrap gap-4">
-              <Link to="/services" className="bg-brand-ink text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-black transition-colors uppercase tracking-widest text-xs">
-                View Services
-              </Link>
-              <a href="https://wa.me/919876543210" className="btn-secondary !py-4">
-                WhatsApp Us
-              </a>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <Link to="/services" className="bg-brand-ink text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-black transition-colors uppercase tracking-widest text-xs">
+                  View Services
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(37, 211, 102, 0.4)" }}
+              >
+                <a href="https://wa.me/919876543210" className="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-[#128C7E] transition-colors shadow-lg shadow-green-500/20 uppercase tracking-widest text-xs">
+                   <MessageCircle size={18} fill="white" />
+                   WhatsApp Us
+                </a>
+              </motion.div>
             </div>
             
             {/* Offer Banner */}
@@ -124,38 +164,89 @@ export default function Home() {
         </div>
 
         {/* Bottom Recent Work Strip (Theme Specific) */}
-        <div className="absolute bottom-0 w-full h-24 bg-white/80 backdrop-blur-md border-t border-brand-border hidden lg:flex items-center px-12 gap-8 z-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="absolute bottom-0 w-full h-24 bg-white/80 backdrop-blur-md border-t border-brand-border hidden lg:flex items-center px-12 gap-8 z-20"
+        >
           <div className="text-xs uppercase tracking-[0.3em] font-bold text-brand-ink border-r border-brand-border pr-8">Recent Work</div>
           <div className="flex-1 flex gap-4 overflow-hidden">
-            {['Hair Cut', 'Bridal', 'Facial', 'Nails', 'Makeup'].map((work) => (
-              <div key={work} className="px-6 h-12 bg-brand-offwhite rounded-xl border border-brand-border flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-brand-grey whitespace-nowrap hover:bg-brand-pink/5 hover:border-brand-pink/20 transition-colors cursor-default">
+            {['Hair Cut', 'Bridal', 'Facial', 'Nails', 'Makeup'].map((work, i) => (
+              <motion.div 
+                key={work} 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2 + (i * 0.1) }}
+                className="px-6 h-12 bg-brand-offwhite rounded-xl border border-brand-border flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-brand-grey whitespace-nowrap hover:bg-brand-pink/5 hover:border-brand-pink/20 transition-colors cursor-default"
+              >
                 {work}
-              </div>
+              </motion.div>
             ))}
-            <Link to="/gallery" className="px-6 h-12 bg-white rounded-xl border border-brand-gold/30 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-brand-gold italic font-serif">View All</Link>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.8 }}
+            >
+              <Link to="/gallery" className="px-6 h-12 bg-white rounded-xl border border-brand-gold/30 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-brand-gold italic font-serif">View All</Link>
+            </motion.div>
           </div>
-          <div className="flex items-center gap-4 pl-8 border-l border-brand-border grow-0 shrink-0">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 2 }}
+            className="flex items-center gap-4 pl-8 border-l border-brand-border grow-0 shrink-0"
+          >
             <div className="flex -space-x-3">
               <div className="w-9 h-9 rounded-full border-2 border-white bg-pink-100 shadow-sm"></div>
               <div className="w-9 h-9 rounded-full border-2 border-white bg-pink-200 shadow-sm"></div>
               <div className="w-9 h-9 rounded-full border-2 border-white bg-pink-300 shadow-sm"></div>
             </div>
             <div className="text-[10px] font-bold text-brand-grey uppercase tracking-widest">500+ Happy Clients</div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Booking Quick CTA */}
       <section className="bg-white border-b border-brand-border py-12">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8"
+        >
            <div className="md:max-w-md text-center md:text-left">
-              <h3 className="text-2xl font-serif text-brand-ink mb-2 italic">Ready for your transformation?</h3>
-              <p className="text-sm text-brand-grey font-light">Book your slot online in seconds. Our experts are waiting to serve you.</p>
+              <motion.h3 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-2xl font-serif text-brand-ink mb-2 italic"
+              >
+                Ready for your transformation?
+              </motion.h3>
+              <motion.p 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-sm text-brand-grey font-light"
+              >
+                Book your slot online in seconds. Our experts are waiting to serve you.
+              </motion.p>
            </div>
-           <Link to="/contact" className="btn-accent whitespace-nowrap shadow-xl !px-12">
-              Book Your Appointment
-           </Link>
-        </div>
+           <motion.div
+             initial={{ opacity: 0, scale: 0.9 }}
+             whileInView={{ opacity: 1, scale: 1 }}
+             viewport={{ once: true }}
+             transition={{ delay: 0.4 }}
+           >
+             <Link to="/contact" className="btn-accent whitespace-nowrap shadow-xl !px-12">
+                Book Your Appointment
+             </Link>
+           </motion.div>
+        </motion.div>
       </section>
 
       {/* Offer Banner */}
@@ -178,18 +269,26 @@ export default function Home() {
 
       {/* Services Preview */}
       <section className="section-padding overflow-hidden">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-5xl font-serif mb-6">Our Magic Touch</h2>
-          <p className="max-w-xl mx-auto text-brand-ink/60 leading-relaxed">
+        <div className="text-center mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30, letterSpacing: "-0.05em" }}
+            whileInView={{ opacity: 1, y: 0, letterSpacing: "normal" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-5xl font-serif mb-6"
+          >
+            Our Magic Touch
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="max-w-xl mx-auto text-brand-ink/60 leading-relaxed"
+          >
             From expert hair styling to rejuvenating skincare, we offer a wide range of services designed to make you shine.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
@@ -253,8 +352,24 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">The RK Experience</span>
-            <h2 className="text-5xl font-serif mb-8 leading-tight italic">Why Discriminating Women Choose Us</h2>
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block"
+            >
+              The RK Experience
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-5xl font-serif mb-8 leading-tight italic"
+            >
+              Why Discriminating Women Choose Us
+            </motion.h2>
             <div className="space-y-8">
               {[
                 { title: "Expert Stylists", desc: "Our team consists of internationally trained beauty professionals." },
@@ -319,10 +434,27 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <span className="text-brand-gold font-serif italic text-xl mb-2 block">Client Stories</span>
-            <h2 className="text-4xl md:text-5xl font-serif text-brand-ink italic">Voices of Elegance</h2>
+            <motion.span 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-brand-gold font-serif italic text-xl mb-2 block"
+            >
+              Client Stories
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-4xl md:text-5xl font-serif text-brand-ink italic"
+            >
+              Voices of Elegance
+            </motion.h2>
           </motion.div>
 
           <TestimonialSlider />
@@ -346,7 +478,15 @@ export default function Home() {
               transition={{ delay: 0.3 }}
               className="text-5xl md:text-6xl font-serif mb-8 leading-tight"
             >
-              Ready to Reveal Your <span className="italic block gold-gradient-text">Best Self?</span>
+              Ready to Reveal Your <motion.span 
+                animate={{ 
+                  textShadow: ["0 0 0px rgba(212, 175, 55, 0)", "0 0 20px rgba(212, 175, 55, 0.4)", "0 0 0px rgba(212, 175, 55, 0)"]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="italic block gold-gradient-text"
+              >
+                Best Self?
+              </motion.span>
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}

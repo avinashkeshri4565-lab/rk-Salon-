@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Send, CheckCircle } from 'lucide-react';
+import { X, Send, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function BookingForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,7 +26,14 @@ export default function BookingForm() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
           >
-            <h3 className="text-3xl font-serif text-brand-ink mb-6 text-center italic">Quick Booking</h3>
+            <motion.h3 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-3xl font-serif text-brand-ink mb-6 text-center italic"
+            >
+              Quick Booking
+            </motion.h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {[

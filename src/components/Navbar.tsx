@@ -142,10 +142,10 @@ export default function Navbar() {
                 >
                   Book Appointment
                 </Link>
-                <div className="flex justify-center gap-4 text-brand-grey text-xs uppercase tracking-widest font-bold">
-                  <span>Instagram</span>
-                  <span>Facebook</span>
-                  <span>WhatsApp</span>
+                <div className="flex justify-center gap-6 text-brand-grey text-[10px] uppercase tracking-widest font-bold">
+                  <a href="#" className="hover:text-brand-pink transition-colors">Instagram</a>
+                  <a href="#" className="hover:text-blue-600 transition-colors">Facebook</a>
+                  <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="text-[#25D366] hover:brightness-90 transition-all">WhatsApp</a>
                 </div>
               </div>
             </div>

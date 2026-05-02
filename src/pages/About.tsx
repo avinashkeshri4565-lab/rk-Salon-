@@ -9,13 +9,32 @@ export default function About() {
         <motion.div
            initial={{ opacity: 0, y: 30 }}
            animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Our Story</span>
-          <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Essence of RK Salon</h1>
-          <p className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block"
+          >
+            Our Story
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-6xl md:text-8xl font-serif mb-10 italic"
+          >
+            Essence of RK Salon
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light"
+          >
             Founded on the belief that beauty is an art form, we've dedicated over a decade to perfecting the salon experience.
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 
@@ -44,13 +63,33 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="space-y-10"
         >
-          <h2 className="text-4xl md:text-5xl font-serif italic text-brand-ink leading-tight">Experience & Expertise <br/> That Speaks for Itself</h2>
-          <p className="text-brand-ink/60 leading-loose text-lg font-light">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl md:text-5xl font-serif italic text-brand-ink leading-tight"
+          >
+            Experience & Expertise <br/> That Speaks for Itself
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-brand-ink/60 leading-loose text-lg font-light"
+          >
             RK Salon started as a small boutique with a big dream: to bring world-class beauty standards to our community. Today, we are proud to be one of the most trusted names in the luxury beauty industry.
-          </p>
-          <p className="text-brand-ink/60 leading-loose text-lg font-light">
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-brand-ink/60 leading-loose text-lg font-light"
+          >
             Our journey is paved with satisfied smiles and thousands of glow-ups. We don't just provide services; we craft confidence.
-          </p>
+          </motion.p>
           
           <div className="grid grid-cols-2 gap-10">
             <motion.div
@@ -112,12 +151,40 @@ export default function About() {
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="space-y-6">
-            <span className="text-brand-gold italic font-serif text-2xl">A Message from the Visionary</span>
-            <h2 className="text-5xl font-serif text-brand-ink">Radhika Kapoor</h2>
-            <p className="text-xl text-brand-ink/60 italic leading-relaxed">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
+          >
+            <motion.span 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-brand-gold italic font-serif text-2xl block"
+            >
+              A Message from the Visionary
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-5xl font-serif text-brand-ink"
+            >
+              Radhika Kapoor
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-xl text-brand-ink/60 italic leading-relaxed"
+            >
               "Beauty isn't just about looking good; it's about feeling powerful. At RK Salon, we strive to give every woman the 'Main Character' energy she deserves through artful styling and heartfelt care."
-            </p>
+            </motion.p>
             <div className="pt-6">
               <img 
                 src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=200" 
@@ -127,7 +194,7 @@ export default function About() {
               />
               <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-ink/40 mt-4">Founder & Lead Aesthetician</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

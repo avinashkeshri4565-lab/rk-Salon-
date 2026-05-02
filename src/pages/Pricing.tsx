@@ -43,13 +43,32 @@ export default function Pricing() {
         <motion.div
            initial={{ opacity: 0, y: 30 }}
            animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Transparent Value</span>
-          <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Price Menu</h1>
-          <p className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block"
+          >
+            Transparent Value
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-6xl md:text-8xl font-serif mb-10 italic"
+          >
+            Price Menu
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light"
+          >
             Premium services at fair prices. We believe in transparency and the highest standards of luxury.
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 
@@ -105,11 +124,40 @@ export default function Pricing() {
 
       {/* Trust Quote */}
       <section className="section-padding py-32 text-center">
-         <div className="max-w-2xl mx-auto space-y-8">
-            <Star size={40} className="mx-auto text-brand-gold italic opacity-20" />
-            <h2 className="text-4xl font-serif italic text-brand-ink">"Luxury must be comfortable, otherwise it is not luxury."</h2>
-            <p className="text-brand-ink/40 uppercase tracking-[0.2em] text-[10px] font-bold">Coco Chanel - A philosophy we follow at RK Salon</p>
-         </div>
+         <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mx-auto space-y-8"
+         >
+            <motion.div 
+               animate={{ rotate: 360 }} 
+               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+               className="w-10 h-10 mx-auto"
+            >
+              <Star size={40} className="text-brand-gold italic opacity-20" />
+            </motion.div>
+
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-4xl font-serif italic text-brand-ink"
+            >
+              "Luxury must be comfortable, otherwise it is not luxury."
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="text-brand-ink/40 uppercase tracking-[0.2em] text-[10px] font-bold"
+            >
+              Coco Chanel - A philosophy we follow at RK Salon
+            </motion.p>
+         </motion.div>
       </section>
     </div>
   );

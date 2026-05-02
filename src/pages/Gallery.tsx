@@ -20,18 +20,65 @@ export default function Gallery() {
   return (
     <div className="pt-20">
       <section className="section-padding pt-32 text-center">
-        <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Visual Journey</span>
-        <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Gallery of Elegance</h1>
-        <p className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light mb-16">
-          Glimpses of our salon, our work, and the magic we create every single day.
-        </p>
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block"
+          >
+            Visual Journey
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-6xl md:text-8xl font-serif mb-10 italic"
+          >
+            Gallery of Elegance
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-2xl mx-auto text-xl text-brand-ink/60 leading-relaxed font-light mb-16"
+          >
+            Glimpses of our salon, our work, and the magic we create every single day.
+          </motion.p>
+        </motion.div>
       </section>
 
       <section className="section-padding pt-0 pb-32">
-        <div className="text-center mb-16">
-           <h2 className="text-4xl font-serif italic mb-4">Magic Transformations</h2>
-           <p className="text-brand-ink/40 uppercase tracking-widest text-[10px] font-bold">Real results at RK Salon</p>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+           <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl font-serif italic mb-4"
+           >
+            Magic Transformations
+           </motion.h2>
+           <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-brand-ink/40 uppercase tracking-widest text-[10px] font-bold"
+           >
+            Real results at RK Salon
+           </motion.p>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
            <div className="space-y-8">

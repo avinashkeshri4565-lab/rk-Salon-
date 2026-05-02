@@ -52,14 +52,33 @@ export default function Services() {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl mx-auto text-center"
         >
-          <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Our Menu</span>
-          <h1 className="text-6xl md:text-8xl font-serif mb-10 italic">Exquisite Services</h1>
-          <p className="text-xl text-white/50 leading-relaxed font-light">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-brand-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block"
+          >
+            Our Menu
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-6xl md:text-8xl font-serif mb-10 italic"
+          >
+            Exquisite Services
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-xl text-white/50 leading-relaxed font-light"
+          >
             Indulge in a curated selection of beauty treatments designed for the modern woman.
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 
@@ -77,7 +96,15 @@ export default function Services() {
                 <div className="w-16 h-16 rounded-3xl bg-brand-pink/20 text-brand-ink flex items-center justify-center font-bold">
                   <cat.icon size={32} />
                 </div>
-                <h2 className="text-4xl font-serif text-brand-ink italic tracking-tight">{cat.title}</h2>
+                <motion.h2 
+                  initial={{ opacity: 0, y: 10, letterSpacing: "-0.02em" }}
+                  whileInView={{ opacity: 1, y: 0, letterSpacing: "normal" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-4xl font-serif text-brand-ink italic tracking-tight"
+                >
+                  {cat.title}
+                </motion.h2>
                 <div className="h-[1px] bg-brand-ink/10 flex-grow"></div>
               </motion.div>
 
@@ -126,11 +153,32 @@ export default function Services() {
       {/* CTA */}
       <section className="bg-brand-pink/10 py-32 text-center overflow-hidden relative">
          <div className="max-w-3xl mx-auto px-6 relative z-10">
-            <h2 className="text-4xl md:text-5xl font-serif mb-8 italic">Can't Find What You're Looking For?</h2>
-            <p className="text-lg text-brand-ink/60 mb-10 leading-relaxed">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-5xl font-serif mb-8 italic"
+            >
+              Can't Find What You're Looking For?
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-lg text-brand-ink/60 mb-10 leading-relaxed"
+            >
               We also offer customized beauty packages for groups, weddings, and parties. Gift vouchers are also available for your loved ones.
-            </p>
-            <Link to="/contact" className="btn-primary">Connect with us</Link>
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Link to="/contact" className="btn-primary">Connect with us</Link>
+            </motion.div>
          </div>
          {/* Decor */}
          <div className="absolute top-0 left-0 w-64 h-64 bg-white/40 blur-3xl -translate-x-1/2 -translate-y-1/2 rounded-full"></div>

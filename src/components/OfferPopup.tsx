@@ -9,10 +9,16 @@ export default function OfferPopup() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const shown = sessionStorage.getItem('popupShown');
-      if (!shown) {
+      try {
+        const shown = sessionStorage.getItem('popupShown');
+        if (!shown) {
+          setIsOpen(true);
+          sessionStorage.setItem('popupShown', 'true');
+        }
+      } catch (e) {
+        // Fallback if sessionStorage is blocked
+        console.warn('sessionStorage is blocked, showing popup once per session fallback');
         setIsOpen(true);
-        sessionStorage.setItem('popupShown', 'true');
       }
     }, 1000);
     return () => clearTimeout(timer);
